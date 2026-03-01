@@ -52,7 +52,6 @@ def infer_func(img, do_rm_bkg, do_infer_aug):
     return [res_img, round(float(angles[0]), 2), round(float(angles[1]), 2), round(float(angles[2]), 2), round(float(angles[3]), 2)]
 
 server = gr.Interface(
-    flagging_mode='never',
     fn=infer_func, 
     inputs=[
         gr.Image(height=512, width=512, label="upload your image"),
@@ -69,4 +68,8 @@ server = gr.Interface(
     ]
 )
 
-server.launch()
+server.launch(
+    server_name="0.0.0.0",
+    server_port=7860,
+    share=True
+)
